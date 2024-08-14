@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface ButtonProps {
   img?: string;
   text: string;
