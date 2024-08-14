@@ -15,6 +15,13 @@ module.exports = {
         'clr-neutral-500': 'hsl(200, 26%, 54%)',
         'clr-neutral-700': 'hsl(200, 24%, 40%)',
         'clr-neutral-900': 'hsl(202, 55%, 16%)',
+      },
+      borderRadius: {
+        '4xl': '2rem',
+        '5xl': '2.5rem',
+        '6xl': '3rem',
+        '7xl': '4rem',
+        '10xl': '10rem',
       }
     },
   },
