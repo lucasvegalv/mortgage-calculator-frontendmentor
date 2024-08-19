@@ -3,6 +3,7 @@ import Button from "../../components/button";
 import { mortgageCalculation } from "../../functs";
 import Input from "../../components/input";
 import Checkbox from "../../components/Checkbox";
+import { validate } from "../../functs";
 
 const Form = () => {
   const [amount, setAmount] = useState<number | string>("");
@@ -26,11 +27,10 @@ const Form = () => {
     setSelectedCheckbox((prev) => (prev === checkboxId ? null : checkboxId));
   };
 
-  const calculation = mortgageCalculation({
-    amount,
-    term,
-    rate,
-  });
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    validate({ amount, term, rate, checkbox: selectedCheckbox });
+  };
 
   return (
     <section className="bg-white w-full p-5 flex flex-col text-left flex-1 lg:rounded-3xl lg:rounded-tr-none">
@@ -41,7 +41,12 @@ const Form = () => {
         Clear All
       </p>
 
-      <form action="" method="" className="flex flex-col w-full gap-5 mt-5">
+      <form
+        onSubmit={handleSubmit}
+        action=""
+        method=""
+        className="flex flex-col w-full gap-5 mt-5"
+      >
         <Input
           changeFunction={handleChangeAmount}
           amount={amount}
@@ -85,7 +90,6 @@ const Form = () => {
           img="src\assets\images\icon-calculator.svg"
           text="Calculate Repayments"
         />
-
       </form>
     </section>
   );

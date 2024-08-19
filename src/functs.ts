@@ -1,19 +1,31 @@
-interface MortgageCalculationParams {
-  amount: number | string,
-  term: number | string,
-  rate: number | string,
-
+export interface mortgageCalculationParams {
+  amount: number;
+  term: number;
+  rate: number;
 }
 
-export const mortgageCalculation = ({amount, term, rate}: MortgageCalculationParams):number => {
-  console.log(`
-      ${amount},
-      ${term},
-      ${rate},
+export const validate = (input: number | string | null) => {
 
-    `)
+  const inputType = typeof(input)
 
-    const result = Number(amount) * Number(term) * Number(rate);
+  if(inputType === "string")  {
+    alert("string")
+  } else {
+    alert("no string")
+  }
+};
 
-    return result;
-}
+export const mortgageCalculation = ({
+  amount,
+  term,
+  rate,
+}: mortgageCalculationParams): number => {
+  const monthlyRate = rate / 100 / 12;
+  const totalPayments = term * 12;
+
+  const monthlyPayment =
+    (amount * monthlyRate * Math.pow(1 + monthlyRate, totalPayments)) /
+    (Math.pow(1 + monthlyRate, totalPayments) - 1);
+
+  return monthlyPayment;
+};
