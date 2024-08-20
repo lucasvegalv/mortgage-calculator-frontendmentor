@@ -59,14 +59,24 @@ const Form = ({ uploadMonthly, uploadTotal }: FormProps) => {
 
   };
 
+  const handleClearAll = () => {
+    setAmount("");
+    setRate("");
+    setSelectedCheckbox(null);
+    setTerm("");
+  }
+
   return (
     <section className="bg-white w-full p-5 flex flex-col text-left flex-1 lg:rounded-3xl lg:rounded-tr-none">
-      <h1 className="jakarta-700 text-xl clr-neutral-700">
-        Mortgage Calculator
-      </h1>
-      <p className="text-xs cursor-pointer underline clr-neutral-500 jakarta-600 opacity-70 hover:text-clr-neutral-900 transition-all">
-        Clear All
-      </p>
+      
+      <div className="lg:flex lg:flex-row lg: items-baseline lg:justify-between">
+        <h1 className="jakarta-700 text-xl clr-neutral-700">
+          Mortgage Calculator
+        </h1>
+        <p className="text-xs cursor-pointer underline clr-neutral-500 jakarta-600 opacity-70 hover:text-clr-neutral-900 transition-all" onClick={handleClearAll}>
+          Clear All
+        </p>
+      </div>
 
       <form
         onSubmit={handleSubmit}
