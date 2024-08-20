@@ -21,6 +21,9 @@ const Form = ({ uploadMonthly, uploadTotal }: FormProps) => {
 
   const handleChangeAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(Number(e.target.value));
+    if(Number(e.target.value) < 5) {
+      
+    }
   };
 
   const handleChangeTerm = (e: React.ChangeEvent<HTMLInputElement>) => {
