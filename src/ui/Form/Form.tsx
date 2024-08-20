@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-import Button from "../../components/button";
-import { mortgageCalculation } from "../../functs";
-import Input from "../../components/input";
 import Checkbox from "../../components/Checkbox";
-import { validate } from "../../functs";
+import Input from "../../components/Input";
+import Button from "../../components/Button";
+import { formatCurrency, mortgageCalculation, totalToRepayCalculation } from "../../functs";
 
-const Form = () => {
+interface FormProps {
+  uploadMonthly: React.Dispatch<React.SetStateAction<string>>;
+  uploadTotal: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const Form = ({ uploadMonthly, uploadTotal }: FormProps) => {
   const [amount, setAmount] = useState<number | string>("");
   const [term, setTerm] = useState<number | string>("");
   const [rate, setRate] = useState<number | string>("");
@@ -29,7 +33,17 @@ const Form = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    validate({ amount, term, rate, checkbox: selectedCheckbox });
+    const monthlyResults = mortgageCalculation({
+      amount,
+      term,
+      rate,
+      checkbox: selectedCheckbox,
+    });
+
+    const totalResults = totalToRepayCalculation({ amount, monthly: monthlyResults })
+
+    uploadMonthly(`$${formatCurrency(monthlyResults)}`);
+    uploadTotal(`$${formatCurrency(totalResults)}`);
   };
 
   return (
@@ -89,6 +103,7 @@ const Form = () => {
         <Button
           img="src\assets\images\icon-calculator.svg"
           text="Calculate Repayments"
+          type="submit"
         />
       </form>
     </section>

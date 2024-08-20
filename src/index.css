@@ -35,6 +35,9 @@
   color: hsl(202, 55%, 16%)
 }
 
+.clr-neutral-dark {
+  color: hsl(205, 38%, 13%)
+}
 
 .jakarta-500 {
   font-family: "Plus Jakarta Sans", sans-serif;
@@ -56,4 +59,3 @@
   font-weight: 700;
   font-style: normal;
 }
-
