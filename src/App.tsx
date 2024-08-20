@@ -15,7 +15,7 @@ function App() {
         <Form uploadMonthly={setResults} uploadTotal={setTotalToRepay}/>
         
         {
-         result != "" ? (
+         (result != "" && typeof(result) != 'number')  ? (
            <CalcultatedResults resultData={result} totalRepay={totalToRepay}/>
          ) : (
            <EmptyResults />

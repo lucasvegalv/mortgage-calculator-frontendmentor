@@ -21,9 +21,6 @@ const Form = ({ uploadMonthly, uploadTotal }: FormProps) => {
 
   const handleChangeAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(Number(e.target.value));
-    if(Number(e.target.value) < 5) {
-      
-    }
   };
 
   const handleChangeTerm = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,20 +37,26 @@ const Form = ({ uploadMonthly, uploadTotal }: FormProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const monthlyResults = mortgageCalculation({
-      amount,
-      term,
-      rate,
-      checkbox: selectedCheckbox,
-    });
 
-    const totalResults = totalToRepayCalculation({
-      amount,
-      monthly: monthlyResults,
-    });
+    if(amount === "" || term === "" || rate === "" || selectedCheckbox === null) {
+      alert('There is empty inputs. Be sure they have some values!')
+    } else {
+      const monthlyResults = mortgageCalculation({
+        amount,
+        term,
+        rate,
+        checkbox: selectedCheckbox,
+      });
+  
+      const totalResults = totalToRepayCalculation({
+        amount,
+        monthly: monthlyResults,
+      });
+  
+      uploadMonthly(`$${formatCurrency(monthlyResults)}`);
+      uploadTotal(`$${formatCurrency(totalResults)}`);
+    }
 
-    uploadMonthly(`$${formatCurrency(monthlyResults)}`);
-    uploadTotal(`$${formatCurrency(totalResults)}`);
   };
 
   return (

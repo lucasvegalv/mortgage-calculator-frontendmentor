@@ -16,16 +16,19 @@ const Input = ({
   iconFirst,
 }: InputProps) => {
   const [focus, setFocus] = useState(false);
+  const [isError, setIsError] = useState(false);
+
 
   const handleFocus = () => {
     setFocus(true);
   };
 
-  const handleBlur = () => {
+  const handleBlur = (amount: number | string) => {
     setFocus(false);
+    const error = amount === "";
+    setIsError(error);
   };
 
-  const isError = amount === 0;
 
   const iconFirstDiv = (
     <div>
@@ -49,7 +52,7 @@ const Input = ({
         </p>
         <input
           onFocus={handleFocus}
-          onBlur={handleBlur}
+          onBlur={(e) => handleBlur(e.target.value)}
           value={amount}
           type="number"
           id="amount"
@@ -79,7 +82,7 @@ const Input = ({
       >
         <input
           onFocus={handleFocus}
-          onBlur={handleBlur}
+          onBlur={(e) => handleBlur(e.target.value)}
           value={amount}
           type="number"
           id="amount"
