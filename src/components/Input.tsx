@@ -21,6 +21,7 @@ const Input = ({
 
   const handleFocus = () => {
     setFocus(true);
+    setIsError(false)
   };
 
   const handleBlur = (amount: number | string) => {

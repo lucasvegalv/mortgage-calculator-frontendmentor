@@ -38,8 +38,13 @@ const Form = ({ uploadMonthly, uploadTotal }: FormProps) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if(amount === "" || term === "" || rate === "" || selectedCheckbox === null) {
-      alert('There is empty inputs. Be sure they have some values!')
+    if (
+      amount === "" ||
+      term === "" ||
+      rate === "" ||
+      selectedCheckbox === null
+    ) {
+      alert("There is empty inputs. Be sure they have some values!");
     } else {
       const monthlyResults = mortgageCalculation({
         amount,
@@ -47,16 +52,15 @@ const Form = ({ uploadMonthly, uploadTotal }: FormProps) => {
         rate,
         checkbox: selectedCheckbox,
       });
-  
+
       const totalResults = totalToRepayCalculation({
         amount,
         monthly: monthlyResults,
       });
-  
+
       uploadMonthly(`$${formatCurrency(monthlyResults)}`);
       uploadTotal(`$${formatCurrency(totalResults)}`);
     }
-
   };
 
   const handleClearAll = () => {
@@ -64,16 +68,18 @@ const Form = ({ uploadMonthly, uploadTotal }: FormProps) => {
     setRate("");
     setSelectedCheckbox(null);
     setTerm("");
-  }
+  };
 
   return (
     <section className="bg-white w-full p-5 flex flex-col text-left flex-1 lg:rounded-3xl lg:rounded-tr-none">
-      
       <div className="lg:flex lg:flex-row lg: items-baseline lg:justify-between">
         <h1 className="jakarta-700 text-xl clr-neutral-700">
           Mortgage Calculator
         </h1>
-        <p className="text-xs cursor-pointer underline clr-neutral-500 jakarta-600 opacity-70 hover:text-clr-neutral-900 transition-all" onClick={handleClearAll}>
+        <p
+          className="text-xs cursor-pointer underline clr-neutral-500 jakarta-600 opacity-70 hover:text-clr-neutral-900 transition-all"
+          onClick={handleClearAll}
+        >
           Clear All
         </p>
       </div>
@@ -91,7 +97,7 @@ const Form = ({ uploadMonthly, uploadTotal }: FormProps) => {
           label="Mortgage Amount"
           iconFirst={true}
         />
-        <div className="lg:flex lg:flex-row lg: items-baseline lg:justify-betwee gap-5">
+        <div className="lg:flex lg:flex-row lg: items-baseline lg:justify-between lg:gap-5  space-y-5">
           <Input
             changeFunction={handleChangeTerm}
             amount={term}
@@ -108,7 +114,10 @@ const Form = ({ uploadMonthly, uploadTotal }: FormProps) => {
           />
         </div>
 
-        <label htmlFor="type1" className="clr-neutral-500 jakarta-600 text-xs">
+        <label
+          htmlFor="type1"
+          className="clr-neutral-500 jakarta-600 text-xs mt-3"
+        >
           Mortgage Type
         </label>
 
