@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import Checkbox from "../../components/Checkbox";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
-import { formatCurrency, mortgageCalculation, totalToRepayCalculation } from "../../functs";
+import {
+  formatCurrency,
+  mortgageCalculation,
+  totalToRepayCalculation,
+} from "../../functs";
 
 interface FormProps {
   uploadMonthly: React.Dispatch<React.SetStateAction<string>>;
@@ -40,7 +44,10 @@ const Form = ({ uploadMonthly, uploadTotal }: FormProps) => {
       checkbox: selectedCheckbox,
     });
 
-    const totalResults = totalToRepayCalculation({ amount, monthly: monthlyResults })
+    const totalResults = totalToRepayCalculation({
+      amount,
+      monthly: monthlyResults,
+    });
 
     uploadMonthly(`$${formatCurrency(monthlyResults)}`);
     uploadTotal(`$${formatCurrency(totalResults)}`);

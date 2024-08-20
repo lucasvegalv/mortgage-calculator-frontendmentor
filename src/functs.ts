@@ -6,7 +6,7 @@ export interface mortgageCalculationParams {
 }
 
 interface totalToRepayProps {
-  amount: number;
+  amount: string | number;
   monthly: number;
 }
 
@@ -59,7 +59,7 @@ export const mortgageCalculation = ({
   amount: number | string;
   term: number | string;
   rate: number | string;
-  checkbox: string;
+  checkbox: string | null;
 }): number => {
   let monthlyPayment: number = 0;
 
