@@ -9,7 +9,7 @@ const Button = ({ img, text, type }: ButtonProps) => {
 
 
   return (
-      <div className='transition-all hover:bg-opacity-60 flex justify-center gap-3 py-3 bg-clr-primary-lime rounded-3xl'>
+      <div className='transition-all  hover:bg-opacity-60 flex justify-center gap-3 py-3 bg-clr-primary-lime rounded-3xl lg:w-3/4 lg:my-3'>
         {
           img && <img src={img} alt="Calculator Icon" width={20} height={20} />
         }

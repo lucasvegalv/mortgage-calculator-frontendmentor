@@ -91,20 +91,22 @@ const Form = ({ uploadMonthly, uploadTotal }: FormProps) => {
           label="Mortgage Amount"
           iconFirst={true}
         />
-        <Input
-          changeFunction={handleChangeTerm}
-          amount={term}
-          icon="years"
-          label="Mortgage Term"
-          iconFirst={false}
-        />
-        <Input
-          changeFunction={handleChangeRate}
-          amount={rate}
-          icon="%"
-          label="Mortgage Rate"
-          iconFirst={false}
-        />
+        <div className="lg:flex lg:flex-row lg: items-baseline lg:justify-betwee gap-5">
+          <Input
+            changeFunction={handleChangeTerm}
+            amount={term}
+            icon="years"
+            label="Mortgage Term"
+            iconFirst={false}
+          />
+          <Input
+            changeFunction={handleChangeRate}
+            amount={rate}
+            icon="%"
+            label="Mortgage Rate"
+            iconFirst={false}
+          />
+        </div>
 
         <label htmlFor="type1" className="clr-neutral-500 jakarta-600 text-xs">
           Mortgage Type
